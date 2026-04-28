@@ -13,13 +13,14 @@ A beginner-friendly series of Jupyter notebooks that walks through key machine l
 | 2 | [2_transformer-tutorial.ipynb](2_transformer-tutorial.ipynb) | Transformer Architecture | Attention · BPE · Positional Encoding · PyTorch |
 | 3 | [3_convnet-interpretability.ipynb](3_convnet-interpretability.ipynb) | Interpreting ConvNets | Grad-CAM · Filter Visualization · t-SNE · VGG16 |
 | 4 | [4_language-models.ipynb](4_language-models.ipynb) | Language Models & Transformers | GRU · Seq2Seq · RoBERTa · Attention Head Ablation |
+| 5 | [5_neural-network-autoencoder.ipynb](5_neural-network-autoencoder.ipynb) | Neural Network — Autoencoder | Autoencoder · LOF · ROC/PR · Permutation Importance · Model Export |
 
 ---
 
 ## 🗺️ Recommended Learning Path
 
 ```
-Beginner          →   0_svm-iforest  →  1_svm-apply
+Beginner          →   0_svm-iforest  →  1_svm-apply  →  5_neural-network-autoencoder
 PyTorch / DL      →   2_transformer  →  3_convnet    →  4_language-models
 ```
 
@@ -71,6 +72,7 @@ jupyter notebook
 - **Transformer architecture**: Attention mechanism, multi-head attention, masked self-attention, cross-attention, positional encoding, BPE tokenization
 - **ConvNet interpretability**: Intermediate activations, filter visualization via gradient ascent, Grad-CAM, t-SNE embeddings
 - **Language modeling**: Character-level GRU, Seq2Seq, logit lens, probing classifiers, fine-tuning pre-trained transformers
+- **Neural networks / autoencoders**: PyTorch autoencoder for anomaly detection, reconstruction error threshold, ROC/PR curves, confusion matrices, hyperparameter sensitivity, permutation feature importance, model persistence
 
 ---
 
