@@ -4,7 +4,7 @@ A beginner-friendly series of Jupyter notebooks that walks through key machine l
 
 ---
 
-## 📚 Notebooks
+## Notebooks
 
 | # | Notebook | Topic | Algorithms |
 |---|---|---|---|
@@ -18,7 +18,7 @@ A beginner-friendly series of Jupyter notebooks that walks through key machine l
 
 ---
 
-## 🗺️ Recommended Learning Path
+## Recommended Learning Path
 
 ```
 Beginner          →   0_svm-iforest  →  1_svm-apply  →  5_neural-network-autoencoder  →  6_feedforward-nn
@@ -29,7 +29,7 @@ Notebooks **0** and **1** use only `scikit-learn` and `numpy` — no deep learni
 
 ---
 
-## ⚙️ Setup
+## Setup
 
 ### Requirements
 - Python 3.9+
@@ -66,14 +66,14 @@ jupyter notebook
 
 ---
 
-## 📖 Topics Covered
+## Topics Covered
 
 - **Anomaly detection**: One-Class SVM, Isolation Forest, Local Outlier Factor, KDE, PCA decision boundaries
 - **Feature engineering**: Time-domain (Kurtosis, Crest Factor, Skewness) and frequency-domain (Spectral Centroid) features from vibration signals
 - **Transformer architecture**: Attention mechanism, multi-head attention, masked self-attention, cross-attention, positional encoding, BPE tokenization
 - **ConvNet interpretability**: Intermediate activations, filter visualization via gradient ascent, Grad-CAM, t-SNE embeddings
 - **Language modeling**: Character-level GRU, Seq2Seq, logit lens, probing classifiers, fine-tuning pre-trained transformers
-- **Neural networks / autoencoders**: PyTorch autoencoder for anomaly detection, reconstruction error threshold, ROC/PR curves, confusion matrices, hyperparameter sensitivity, permutation feature importance, model persistence
+- **Neural networks/autoencoders**: PyTorch autoencoder for anomaly detection, reconstruction error threshold, ROC/PR curves, confusion matrices, hyperparameter sensitivity, permutation feature importance, model persistence
 - **Feedforward NN from scratch**: MLP built with NumPy only, Xavier initialisation, forward propagation, binary cross-entropy, backpropagation, decision boundary visualisation, activation/depth/lr ablation studies
 
 ---
