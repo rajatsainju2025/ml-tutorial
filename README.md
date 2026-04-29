@@ -14,13 +14,14 @@ A beginner-friendly series of Jupyter notebooks that walks through key machine l
 | 3 | [3_convnet-interpretability.ipynb](3_convnet-interpretability.ipynb) | Interpreting ConvNets | Grad-CAM · Filter Visualization · t-SNE · VGG16 |
 | 4 | [4_language-models.ipynb](4_language-models.ipynb) | Language Models & Transformers | GRU · Seq2Seq · RoBERTa · Attention Head Ablation |
 | 5 | [5_neural-network-autoencoder.ipynb](5_neural-network-autoencoder.ipynb) | Neural Network — Autoencoder | Autoencoder · LOF · ROC/PR · Permutation Importance · Model Export |
+| 6 | [6_feedforward-nn.ipynb](6_feedforward-nn.ipynb) | Toy Neural Network from Scratch | MLP · Xavier Init · Backprop · Activation Functions · Ablation Studies |
 
 ---
 
 ## 🗺️ Recommended Learning Path
 
 ```
-Beginner          →   0_svm-iforest  →  1_svm-apply  →  5_neural-network-autoencoder
+Beginner          →   0_svm-iforest  →  1_svm-apply  →  5_neural-network-autoencoder  →  6_feedforward-nn
 PyTorch / DL      →   2_transformer  →  3_convnet    →  4_language-models
 ```
 
@@ -73,6 +74,7 @@ jupyter notebook
 - **ConvNet interpretability**: Intermediate activations, filter visualization via gradient ascent, Grad-CAM, t-SNE embeddings
 - **Language modeling**: Character-level GRU, Seq2Seq, logit lens, probing classifiers, fine-tuning pre-trained transformers
 - **Neural networks / autoencoders**: PyTorch autoencoder for anomaly detection, reconstruction error threshold, ROC/PR curves, confusion matrices, hyperparameter sensitivity, permutation feature importance, model persistence
+- **Feedforward NN from scratch**: MLP built with NumPy only, Xavier initialisation, forward propagation, binary cross-entropy, backpropagation, decision boundary visualisation, activation/depth/lr ablation studies
 
 ---
 
