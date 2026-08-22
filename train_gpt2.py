@@ -267,6 +267,7 @@ import os
 # run the training loop
 from torch.distributed import init_process_group, destroy_process_group
 from torch.nn.parallel import DistributedDataParallel as DDP
+import torch.distributed as dist
 
 # set up DDP (Distributed data parallel).
 # torchrun command sets the env variables RANK, LOCAL_RANK, and WORLD_SIZE
@@ -333,6 +334,7 @@ model.to(device)
 model = torch.compile(model)
 if ddp:
     model = DDP(model, device_ids=[ddp_local_rank])
+raw_model = model.module if ddp else model # always conatins the "raw" unwrapped model
 
 # lr cosine decay
 max_lr = 3e-4
@@ -355,7 +357,7 @@ def get_lr(it):
 
 # optimize
 # optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4, betas=(0.9, 0.95), eps=1e-8)
-optimizer = model.configure_optimizers(weight_decay=0.1, learning_rate=6e-4, device=device)
+optimizer = raw_model.configure_optimizers(weight_decay=0.1, learning_rate=6e-4, device=device)
 
 for step in range(max_steps):
     t0 = time.time()
@@ -369,7 +371,12 @@ for step in range(max_steps):
             #import code; code.interact(local=locals())
         loss = loss / grad_accum_steps
         loss_accum += loss.detach()
+        if ddp:
+            model.require_backward_grad_sync = (micro_step == grad_accum_steps - 1)
+            # sync when micro steps is the last step
         loss.backward()
+    if ddp:
+        dist.all_reduce(loss_accum, op=dist.ReduceOp.AVG)
     norm = torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0) # we can get unlucky with bad data batch, shock the model and shock the optimization
     # determine and set the learning rate for this iteration
     lr = get_lr(step)
@@ -380,9 +387,13 @@ for step in range(max_steps):
     torch.cuda.synchronize() #wait for all the gpu work to run
     t1 = time.time()
     dt = (t1 - t0) # time difference in seconds
-    tokens_processed = train_loader.B * train_loader.T * grad_accum_steps
+    tokens_processed = train_loader.B * train_loader.T * grad_accum_steps * ddp_world_size
     tokens_per_sec = tokens_processed / dt
-    print(f"step {step} | loss: {loss_accum.item():.6f} | lr: {lr:.4e} | norm: {norm:.4f} | dt: {dt:.2f} s | tok/sec: {tokens_per_sec:.2f}")
+    if master_process:
+        print(f"step {step} | loss: {loss_accum.item():.6f} | lr: {lr:.4e} | norm: {norm:.4f} | dt: {dt:.2f} s | tok/sec: {tokens_per_sec:.2f}")
+
+if ddp:
+    destroy_process_group()
 
 
 import sys; sys.exit(0)
