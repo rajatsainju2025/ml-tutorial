@@ -12,6 +12,7 @@
 ---
 
 <img src="docs/img/bearing.jpg" align="right" width="300" alt="Watercolor of a ball bearing with a small red flaw on its inner race.">
+
 **SOMEWHERE IN A PUMP ROOM**, a bearing has begun to fail. Nobody can hear it yet. The motor hums at the pitch it has held for years. But a small flaw has opened on the inner race, and each time a ball rolls over it the shaft gives a short ring, about a hundred and fifty-six times a second. An accelerometer bolted to the casing records every one. The question that opens this tutorial, and in a sense the whole field, is how a machine might notice what the people in the room have not.
 
 The first notebook answers by building the problem from nothing. A healthy shaft is four harmonics of 30 Hz and some noise. A faulty one adds a sharp strike every 6.4 milliseconds that rings at 3,500 Hz and dies away. Then the notebook does what an engineer with a stethoscope would do, and reduces each half-second to five numbers. Kurtosis says how spiky a signal is. Crest factor compares the tallest peak with the typical one.
@@ -25,6 +26,7 @@ The first notebook answers by building the problem from nothing. A healthy shaft
 <p><sub><b>Every window, by two numbers.</b> All 500 windows from notebook 0, rerun with its seed. Healthy kurtosis runs from 2.32 to 2.48; faulty from 3.79 to 4.21. Kurtosis alone separates them all.</sub></p>
 
 <img src="docs/img/flock.jpg" align="left" width="330" alt="Watercolor of sheep inside an oval fence, one sheep alone under a distant tree.">
+
 Only then do the algorithms arrive, and none of them is told which windows are faulty. A One-Class SVM draws a fence around normal. An Isolation Forest counts how many random cuts it takes to trap a point; the strange ones are easy to trap. A Local Outlier Factor compares each point with its neighbors and flags the ones that live alone.
 
 The results are not close. The forest catches 46 of the 50 faults and raises 4 false alarms. The fence catches 27. The neighbors catch 11. The faulty windows are not scattered loners; they form a small, tight crowd of their own, and a tight crowd looks perfectly normal to a test that compares each point only with its neighbors.
@@ -42,6 +44,7 @@ Most introductions to machine learning begin with a library call. This one begin
 <p align="center">◆</p>
 
 <img src="docs/img/moons.jpg" align="right" width="330" alt="Watercolor night sky: blue and orange stars form two crescents, with a gold line curving between them.">
+
 The purest example is the sixth notebook, which builds a neural network with nothing but NumPy. There is no PyTorch here, and no Keras. The data are two interlocking crescents, the kind no straight line can separate. The notebook writes sigmoid, tanh, and ReLU by hand, along with their derivatives, sets the starting weights with Xavier's rule, and trains by backpropagation, which turns out to be the chain rule applied with the patience of a bookkeeper.
 
 In the notebook's own run, the 2-16-8-1 network reaches 92.5 percent on the test points after 2,000 epochs. A bolder learning rate of 0.2 passes 90 percent by epoch 215. A timid 0.001 never gets past 85 percent, about what a straight line can do.
@@ -49,6 +52,7 @@ In the notebook's own run, the 2-16-8-1 network reaches 92.5 percent on the test
 <br clear="right">
 
 <img src="docs/img/hourglass.jpg" align="left" width="300" alt="Watercolor of an hourglass on a wooden desk beside a window.">
+
 The fifth notebook returns to the pump room with that new tool. An autoencoder squeezes each window's five numbers through a bottleneck of two, then tries to rebuild all five. It trains only on healthy windows, so it learns to rebuild healthy and nothing else. Shown a faulty window, it stumbles, and the size of the stumble becomes the alarm.
 
 The network ranked the windows perfectly: the worst healthy window scored 0.054, and the mildest fault scored 6.7, more than a hundred times higher. Yet the notebook's rule, which flags anything above the 90th percentile of healthy errors, raised 45 false alarms. The model was right. The threshold was timid.
@@ -70,21 +74,25 @@ The network ranked the windows perfectly: the worst healthy window scored 0.054,
 <p align="center">◆</p>
 
 <img src="docs/img/spotlights.jpg" align="right" width="330" alt="Watercolor of a stage with four word blocks, the cat sat down, lit by two spotlights.">
+
 In 2017, eight researchers, most of them at Google, published a paper with a title that sounded like a dare: "Attention Is All You Need." The second notebook takes it at its word. It starts with attention at its smallest, a few vectors deciding how much to look at one another. It shows why the Transformer could read a sentence all at once while the recurrent networks before it had to read word by word. Then it assembles the rest: byte-pair encoding to cut text into tokens, embeddings to turn tokens into vectors, and positional encodings to give the model a sense of order, without which "dog bites man" and "man bites dog" would be the same sentence.
 
 <br clear="right">
 
 <img src="docs/img/elephant.jpg" align="left" width="330" alt="Watercolor of an elephant at golden hour with a red and yellow glow over its head.">
+
 The third and fourth notebooks are PyTorch translations of companion notebooks from François Chollet's "Deep Learning with Python," with more pictures and more prying. The third opens a VGG16 network that has seen more than a million photographs and asks what it learned. Its first layers turn out to detect edges and colors. Deeper filters, coaxed into view by gradient ascent, answer to textures and patterns of growing intricacy. Grad-CAM paints a heat map over a photograph of an elephant, showing where the network was looking when it made up its mind.
 
 <br clear="left">
 
 <img src="docs/img/quill.jpg" align="right" width="300" alt="Watercolor of a quill in an inkwell beside a candle and a page of handwriting.">
+
 The fourth teaches a small recurrent network to write like Shakespeare, one character at a time, and then to translate English into Spanish. Then it opens a Transformer and starts removing parts: it silences attention heads one by one, reads the model's half-formed guesses with the logit lens, and traces how information flows through the residual stream.
 
 <br clear="right">
 
 <img src="docs/img/magnifier.jpg" align="left" width="300" alt="Watercolor of a magnifying glass over a page with a computer bug and a page with a virus particle.">
+
 The seventh notebook is a short parable about meaning. It asks two models how to catch a computer virus, and offers them five answers: two about computers, one about doctors and hand-washing, one about the flu, and one about a stock that "caught a cold." The fast model reads the question and each answer separately; the slower one reads them side by side. Both put the five answers in the same order, and both rank the doctors above the sentence about antivirus software, which says the right thing in different words. Meaning, it turns out, is still partly a matter of vocabulary.
 
 <br clear="left">
@@ -92,6 +100,7 @@ The seventh notebook is a short parable about meaning. It asks two models how to
 <p align="center">◆</p>
 
 <img src="docs/img/tower.jpg" align="right" width="300" alt="Watercolor of a tower of twelve pale blocks; colored cubes enter at the base and birds fly from the top.">
+
 The last folder, `neo-nanogpt`, is the capstone. Following Andrej Karpathy's lecture "Let's reproduce GPT-2," it rebuilds the hundred-and-twenty-four-million-parameter GPT-2 from blank files. It first checks its work by loading OpenAI's released weights, and then begins training its own copy on a million characters of Shakespeare. Along the way it uses the tricks that make modern training fast: fused attention kernels, `torch.compile`, bfloat16 arithmetic, gradient accumulation to reach half-million-token batches, a warmup-then-cosine learning rate, gradient clipping, and training across several GPUs at once.
 
 <br clear="right">
