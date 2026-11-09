@@ -28,3 +28,6 @@ results/*.pt
 # IDE
 .vscode/
 .idea/
+
+# Kilo Code
+.kilo/
