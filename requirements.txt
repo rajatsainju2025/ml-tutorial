@@ -1,32 +1,3 @@
-# Core
-numpy
-scipy
-pandas
-matplotlib
-seaborn
-pillow
-requests
-joblib
-
-# Machine learning
-scikit-learn
-torch
-torchvision
-torchaudio
-
-# NLP / transformers
-transformers
-datasets
-sacrebleu
-sentence-transformers
-tiktoken
-openai
-
-# Graphs / visualization
-graphviz
-networkx
-cdlib
-
-# Notebooks
-jupyter
-ipykernel
+# Pinned-free convenience mirror of pyproject.toml. Preferred install:
+#   pip install -e ".[all]"
+-e .[all]

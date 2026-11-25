@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mltut"
+version = "0.1.0"
+description = "Machine learning taken apart: notebooks that build each model before using it."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Rajat Sainju" }]
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "scipy",
+  "pandas",
+  "matplotlib",
+  "seaborn",
+  "scikit-learn",
+  "joblib",
+  "pillow",
+  "requests",
+]
+
+[project.optional-dependencies]
+torch = ["torch", "torchvision", "torchaudio"]
+nlp = ["transformers", "datasets", "sacrebleu", "sentence-transformers", "tiktoken"]
+graphs = ["graphviz", "networkx", "cdlib"]
+notebooks = ["jupyterlab", "ipykernel"]
+dev = ["pytest", "ruff", "pre-commit", "nbstripout"]
+all = ["mltut[torch,nlp,graphs,notebooks,dev]"]
+
+[project.urls]
+Repository = "https://github.com/rajatsainju2025/ml-tutorial"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+# --- tooling -----------------------------------------------------------------
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+extend-include = ["*.ipynb"]
+extend-exclude = ["sandbox", "notebooks", "nanogpt/notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E501", "E731", "E741"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["mltut", "model"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+markers = ["torch: requires PyTorch"]

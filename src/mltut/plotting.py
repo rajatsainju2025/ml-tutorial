@@ -1,5 +1,5 @@
-import numpy as np
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def plot_derivative(f, x, h=1e-6, xs=None, ax=None, span=1.0):
@@ -24,13 +24,22 @@ def plot_derivative(f, x, h=1e-6, xs=None, ax=None, span=1.0):
     ax.plot(t, fx + slope * (t - x), "--", color="red", label="tangent")
 
     # arrow showing the direction of increase (along the slope)
-    ax.annotate("", xy=(x + span * 0.6, fx + slope * span * 0.6), xytext=(x, fx),
-                arrowprops=dict(arrowstyle="->", color="green", lw=2))
+    ax.annotate(
+        "",
+        xy=(x + span * 0.6, fx + slope * span * 0.6),
+        xytext=(x, fx),
+        arrowprops=dict(arrowstyle="->", color="green", lw=2),
+    )
 
     # text with f(x) and derivative
-    ax.text(0.03, 0.95, f"x = {x}\nf(x) = {fx:.4f}\nf'(x) ≈ {slope:.4f}",
-            transform=ax.transAxes, va="top",
-            bbox=dict(boxstyle="round", facecolor="white", alpha=0.8))
+    ax.text(
+        0.03,
+        0.95,
+        f"x = {x}\nf(x) = {fx:.4f}\nf'(x) ≈ {slope:.4f}",
+        transform=ax.transAxes,
+        va="top",
+        bbox=dict(boxstyle="round", facecolor="white", alpha=0.8),
+    )
 
     ax.set_xlabel("x")
     ax.set_ylabel("f(x)")
